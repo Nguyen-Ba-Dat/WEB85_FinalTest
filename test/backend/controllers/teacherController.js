@@ -8,18 +8,14 @@ exports.getTeachers = async (req, res) => {
         const limit = parseInt(req.query.limit) || 10;
         const skip = (page - 1) * limit;
 
-        const teachers = await Teacher.find({ isDeleted: false })
+        const teachers = await Teacher.find()
             .populate('userId', 'name email phoneNumber address')
-            .populate({
-                path: 'positions',
-                select: 'name code des',
-                model: 'TeacherPosition'
-            })
+            .populate('positions', 'name code') 
             .select('code isActive startDate degrees positions')
             .skip(skip)
             .limit(limit);
 
-        const total = await Teacher.countDocuments({ isDeleted: false });
+        const total = await Teacher.countDocuments();
 
         res.json({
             success: true,

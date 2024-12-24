@@ -107,19 +107,7 @@ const TeachersPage = () => {
     {
       title: 'Vị trí công tác',
       dataIndex: 'positions',
-      key: 'positions',
-      render: (positions) => (
-        <div>
-          {positions?.map((position, index) => (
-            <Tag key={position._id || index} color="blue">
-              {position.name || 'Chưa cập nhật'} ({position.code})
-              <div style={{ fontSize: '12px', color: '#666' }}>
-                {position.des || ''}
-              </div>
-            </Tag>
-          ))}
-        </div>
-      ),
+      key: 'positions'
     },
     {
       title: 'Địa chỉ',
